@@ -1,0 +1,17 @@
+<div *ngIf="weatherList.length > 0">
+    <swiper [pagination]="true" class="mySwiper" *ngIf="isMobile; else elseBlock">
+        <ng-template swiperSlide>
+            <app-current-day [dayData]="weatherList[0]" [currentTime]="currentTime">
+            </app-current-day>
+        </ng-template>
+        <ng-template swiperSlide>
+            <app-week [weekdays]="weatherList.slice(0,5)"></app-week>
+        </ng-template>
+    </swiper>
+    <ng-template #elseBlock>
+        <app-current-day [dayData]="weatherList[0]" [currentTime]="currentTime">
+        </app-current-day>
+        <div class="divider" *ngIf="!isMobile"></div>
+        <app-week [weekdays]="weatherList"></app-week>
+    </ng-template>
+</div>
